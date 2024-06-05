@@ -1,29 +1,33 @@
-import { Dies } from "../Constants.mjs";
+import { Dies } from "../constants.mjs";
+import Character from "./Character.mjs"
 export default class SuperHero extends Character {
   constructor(id, name, slug, intelligence, strength, speed, durability, power, combat) {
     super(id, name, slug, intelligence, strength, speed, durability, power, combat);
   }
 
-  attack(dieResult,dies) {
-    let damage;
+  attack(dieResult,dies,otherTurnFigher) {
+    let damage = 0;
     if (dieResult === 1) {
       // Pifia
-      damage = this.SPD / dieResult;
-      console.log( this.name + ' ha hecho una pifia de ' + damage);
+      damage =  Math.ceil(this.SPD / dieResult);
+      console.log("FAIL!!" +  this.name + ' obtiene un  '+ dieResult + " y se clava el arma en su pierna izda. Recibe un daño de " + damage + "Puntos" );
+      this.HP -= damage;
     } else if (dieResult === 2) {
       // Pifia
-      damage = this.SPD / (4 * dieResult);
+      damage =  Math.ceil(this.SPD / (4 * dieResult));
       console.log( this.name + ' ha hecho una pifia de ' + damage);
+      otherTurnFigher.HP -= damage;
     } else if (dieResult >= 3 && dieResult <= 17) {
       // Daño normal
-      damage = (this.POW + this.STR) * dieResult / 100;
+      damage =  Math.ceil((this.POW + this.STR) * dieResult / 100);
       console.log( this.name + ' ha inflingido un daño de ' + damage);
+      otherTurnFigher.HP -= damage;
     } else if (dieResult >= 18 && dieResult <= 20) {
       // Crítico
-      damage = this.calculateCriticalDamage(dieResult) + (this.POW + this.STR) * dieResult / 100;
-      console.log( this.name + ' ha hecho un daño critico de ' + damage);
+      damage =  Math.ceil(this.calculateCriticalDamage(dieResult,dies) + (this.POW + this.STR) * dieResult / 100);
+      console.log( '\x1b[32m%s\x1b[0m',"CRITICAL HIT!!!" + this.name + ' obtiene un ' + dieResult + " y ejerce un daño de  " + damage + " puntos.");
+      otherTurnFigher.HP -= damage;
     }
-    return damage;
   }
 
   calculateCriticalDamage(dieResult,dies) {
@@ -41,6 +45,4 @@ export default class SuperHero extends Character {
     }
     return damage;
   }
-
-
 }

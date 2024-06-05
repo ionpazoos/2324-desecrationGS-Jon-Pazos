@@ -8,7 +8,7 @@ export default class Character {
     this.SPD = speed;
     this.DUR = durability;
     this.POW = power;
-    this.CBT = combat;
+    this.COM = combat;
     this.HP = Math.min(strength * 10, 666);
   }
 
