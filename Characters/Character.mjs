@@ -9,13 +9,9 @@ export default class Character {
     this.DUR = durability;
     this.POW = power;
     this.CBT = combat;
+    this.HP = Math.min(strength * 10, 666);
   }
 
   attack() {
   }
 }
-
-
-
-
-  
