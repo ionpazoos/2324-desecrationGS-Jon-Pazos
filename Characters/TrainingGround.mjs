@@ -6,11 +6,21 @@ export default class TrainingGround {
     const heroes = [];
     for (let i = 0; i < characters.length; i++) {
       const character = characters[i];
-      
-        const hero = new SuperHero(character.id, character.name, character.slug, character.INT, character.STR, character.SPD, character.DUR, character.POW, character.CBT);
-        if (hero.name !== "Junkpile") {
-          heroes.push(hero);
-        }
+      const powerstats = character.powerstats;
+      const hero = new SuperHero(
+        character.id,
+        character.name,
+        character.slug,
+        powerstats.intelligence,
+        powerstats.strength,
+        powerstats.speed,
+        powerstats.durability,
+        powerstats.power,
+        powerstats.combat
+      );
+      if (hero.name !== "Junkpile") {
+        heroes.push(hero);
+      }
     }
     const randomIndex = Math.floor(Math.random() * heroes.length);
     return heroes[randomIndex];
@@ -20,12 +30,22 @@ export default class TrainingGround {
     let villain;
     for (let i = 0; i < characters.length; i++) {
       const character = characters[i];
-   
-        const superVillain = new SuperVillain(character.id, character.name, character.slug, character.INT, character.STR, character.SPD, character.DUR, character.POW, character.CBT);
-        if (superVillain.name === "Junkpile") {
-          villain = superVillain;
-          break;
-        }
+      const powerstats = character.powerstats;
+      const superVillain = new SuperVillain(
+        character.id,
+        character.name,
+        character.slug,
+        powerstats.intelligence,
+        powerstats.strength,
+        powerstats.speed,
+        powerstats.durability,
+        powerstats.power,
+        powerstats.combat
+      );
+      if (superVillain.name === "Junkpile") {
+        villain = superVillain;
+        break;
+      }
     }
     return villain;
   }
