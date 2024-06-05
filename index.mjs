@@ -2,6 +2,8 @@ import TrainingGround from "./Characters/TrainingGround.mjs";
 import axios from "axios";
 
 getCharacters();
+createDies();
+
 
 function getCharacters() {
   const url = 'https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json';
@@ -10,11 +12,15 @@ function getCharacters() {
     .then(response => {
       const datos = response.data;
       
-      const trainingScenario = TrainingGround.createTrainingScenario(datos);
+      const Characters = TrainingGround.createCharacters(datos);
       
-      console.log('Training Scenario:', trainingScenario);
+      console.log('Charcter:', Characters);
     })
     .catch(error => {
-      console.error('Error al obtener datos de la API:', error);
+      console.error('Error al obtener datos:', error);
     });
+}
+function createDies() {
+    
+    
 }

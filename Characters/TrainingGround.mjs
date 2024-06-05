@@ -50,7 +50,7 @@ export default class TrainingGround {
     return villain;
   }
 
-  static createTrainingScenario(characters) {
+  static createCharacters(characters) {
     const hero = this.createRandomHero(characters);
     const villain = this.createVillain(characters);
     return { hero, villain };

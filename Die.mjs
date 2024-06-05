@@ -31,22 +31,6 @@ export default class Die {
         const randomIndex = Math.floor(Math.random() * this.values.length);
         return this.values[randomIndex];
       }
-
-    createD3() {
-    return Die.createDie("D3");
-    }
-    
-    createD5() {
-    return Die.createDie("D5");
-    }
-    
-    createD20() {
-    return Die.createDie("D20");
-    }
-    
-    createD100() {
-    return Die.createDie("D100");
-    }
       
   }
   
